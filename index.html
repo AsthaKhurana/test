@@ -109,6 +109,7 @@
           range: 'Sheet1!A2:E',
         }).then(function(response) {
           var range = response.result;
+          console.log(range);
           if (range.values.length > 0) {
             appendPre('events data:');
             for (i = 0; i < range.values.length; i++) {
