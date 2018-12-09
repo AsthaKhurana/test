@@ -2,7 +2,12 @@
  * Print all the events in the spreadsheet:
  * https://docs.google.com/spreadsheets/d/1jdAx-yiYrLM30_5wKO23fRz7L8s-JdvKDd07PizG8II/edit
  */
-
+ function appendPre(message) {
+   var pre = document.getElementById('content');
+   var textContent = document.createTextNode(message + '\n');
+   pre.appendChild(textContent);
+ }
+ 
 function listEvents() {
   gapi.client.sheets.spreadsheets.values.get({
     spreadsheetId: '1jdAx-yiYrLM30_5wKO23fRz7L8s-JdvKDd07PizG8II',
