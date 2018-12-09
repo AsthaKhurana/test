@@ -1,20 +1,25 @@
 /**
- * Print the names and majors of students in a sample spreadsheet:
- * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
+ * Print all the events in the spreadsheet:
+ * https://docs.google.com/spreadsheets/d/1jdAx-yiYrLM30_5wKO23fRz7L8s-JdvKDd07PizG8II/edit
  */
- function listEvents() {
-   gapi.client.sheets.spreadsheets.values.get({
-     spreadsheetId: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms',
-     range: 'Class Data!A2:E',
-   }).then(function(response) {
-     var range = response.result;
-     if (range.values.length > 0) {
-       console.log(range);
-       }
-     } else {
-       appendPre('No data found.');
-     }
-   }, function(response) {
-     appendPre('Error: ' + response.result.error.message);
-   });
- 
+
+function listEvents() {
+  gapi.client.sheets.spreadsheets.values.get({
+    spreadsheetId: '1jdAx-yiYrLM30_5wKO23fRz7L8s-JdvKDd07PizG8II',
+    range: 'Sheet1!A2:L',
+  }).then(function(response) {
+    var range = response.result;
+    if (range.values.length > 0) {
+      appendPre('events data:');
+      for (i = 0; i < range.values.length; i++) {
+        var row = range.values[i];
+        // Print each row
+        appendPre(row);
+      }
+    } else {
+      appendPre('No data found.');
+    }
+  }, function(response) {
+    appendPre('Error: ' + response.result.error.message);
+  });
+}
